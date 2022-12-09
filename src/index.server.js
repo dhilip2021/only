@@ -1,10 +1,26 @@
 const express = require("express");
+const mongoose = require("mongoose");
 const app = express();
 const env = require("dotenv");
 const cors = require("cors");
 env.config();
+
+
+mongoose.set('strictQuery', true);
+
+
+const connectionUrl = `mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASSWORD}@cluster0.20nwetd.mongodb.net/${process.env.MONGO_DATABASE}?retryWrites=true&w=majority`
+mongoose.connect(connectionUrl, {
+    useNewUrlParser: true, 
+    useUnifiedTopology: true
+}).then(()=>{
+    console.log('DB Connected')
+});
+
 app.use(cors());
 app.use(express.json());
+
+
 
 
 app.get("/",(req,res)=>{
