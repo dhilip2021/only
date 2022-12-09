@@ -5,7 +5,7 @@ const env = require("dotenv");
 const cors = require("cors");
 env.config();
 
-const adminRoutes = ("./routes/auth");
+const adminRoutes = require("./routes/admin/authRoutes");
 
 mongoose.set('strictQuery', true);
 const connectionUrl = `mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASSWORD}@cluster0.20nwetd.mongodb.net/${process.env.MONGO_DATABASE}?retryWrites=true&w=majority`
