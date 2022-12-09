@@ -5,10 +5,9 @@ const env = require("dotenv");
 const cors = require("cors");
 env.config();
 
+const adminRoutes = ("/");
 
 mongoose.set('strictQuery', true);
-
-
 const connectionUrl = `mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASSWORD}@cluster0.20nwetd.mongodb.net/${process.env.MONGO_DATABASE}?retryWrites=true&w=majority`
 mongoose.connect(connectionUrl, {
     useNewUrlParser: true, 
@@ -21,7 +20,7 @@ app.use(cors());
 app.use(express.json());
 
 
-
+app.use("/api",adminRoutes)
 
 app.get("/",(req,res)=>{
     res.status(200).json({
